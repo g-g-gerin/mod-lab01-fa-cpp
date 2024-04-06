@@ -53,24 +53,22 @@ unsigned int faStr3(const char *inputString) {
     unsigned int currentWordLength = 0;
 
     while (*inputString) {
-        if (std::isalpha(*inputString)) {
-            currentWordLength++;
+        if (isalpha(*inputString)) {
+            ++currentWordLength;
         } else if (currentWordLength > 0) {
-            totalWordCount++;
+            ++totalWordCount;
             totalCharacters += currentWordLength;
             currentWordLength = 0;
         }
         ++inputString;
     }
-
     if (currentWordLength > 0) {
-        totalWordCount++;
+        ++totalWordCount;
         totalCharacters += currentWordLength;
     }
-
     if (totalWordCount == 0) return 0;
 
-    double averageLength = (double)totalCharacters / totalWordCount;
-    return (unsigned int)(averageLength + 0.5);
+    double averageLength = static_cast<double>(totalCharacters) / totalWordCount;
+    return static_cast<unsigned int>(averageLength + 0.5);
 }
 }
