@@ -47,6 +47,22 @@ unsigned int faStr1(const char *inputString) {
     return countValidWords;
 }
 
+    if (wordStart) {
+        bool isValidWord = true;
+        for (const char *p = wordStart; *p; ++p) {
+            if (std::isdigit(*p)) {
+                isValidWord = false;
+                break;
+            }
+        }
+        if (isValidWord) {
+            ++countValidWords;
+        }
+    }
+
+    return countValidWords;
+}
+
 unsigned int faStr2(const char *inputString) {
     unsigned int countCapitalizedWords = 0;
     bool isCapitalizedWord = false;
