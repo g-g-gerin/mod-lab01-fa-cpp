@@ -68,9 +68,9 @@ unsigned int faStr3(const char *inputString) {
         totalCharacters += currentWordLength;
     }
 
-    double averageLength = static_cast<double>(totalCharacters) / totalWordCount;
-    unsigned int roundedAverage = static_cast<unsigned int>(round(averageLength));
+    if (totalWordCount == 0) return 0;
 
-    return roundedAverage;
+    double averageLength = (double)totalCharacters / totalWordCount;
+    return (unsigned int)(averageLength + 0.5);
 }
 }
