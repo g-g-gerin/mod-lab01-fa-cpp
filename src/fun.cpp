@@ -6,28 +6,23 @@
 
 unsigned int faStr1(const char *inputString) {
     unsigned int countValidWords = 0;
-    bool isInWord = false;
-    bool isInvalidWord = false;
+    bool isWord = false;
 
     while (*inputString) {
         if (std::isalpha(*inputString)) {
-            if (!isInWord) {
-                isInWord = true;
-                isInvalidWord = false;
+            if (!isWord) {
+                isWord = true;
             }
-        } else if (std::isdigit(*inputString)) {
-            isInvalidWord = true;
-        } else {
-            if (isInWord && !isInvalidWord) {
-                ++countValidWords;
-            }
-            isInWord = false;
+        }
+        else if (!std::isalnum(*inputString) && isWord) {
+            countValidWords++;
+            isWord = false;
         }
         ++inputString;
     }
 
-    if (isInWord && !isInvalidWord) {
-        ++countValidWords;
+    if (isWord) {
+        countValidWords++;
     }
 
     return countValidWords;
