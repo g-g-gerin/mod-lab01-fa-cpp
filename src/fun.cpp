@@ -71,4 +71,3 @@ unsigned int faStr3(const char *inputString) {
     double avgLength = static_cast<double>(totalChars) / totalWords;
     return static_cast<unsigned int>(avgLength + 0.5);
 }
-}
