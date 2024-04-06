@@ -68,5 +68,7 @@ unsigned int faStr3(const char *inputString) {
         totalCharacters += currentWordLength;
     }
 
-    return (totalWordCount == 0) ? 0 : static_cast<unsigned int>(std::round(static_cast<double>(totalCharacters) / totalWordCount));
+    double averageLength = static_cast<double>(totalCharacters) / totalWordCount;
+    return (totalWordCount == 0) ? 0 : static_cast<unsigned int>(round(averageLength));
+}
 }
