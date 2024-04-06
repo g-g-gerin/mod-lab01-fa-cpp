@@ -68,8 +68,7 @@ unsigned int faStr3(const char *inputString) {
     }
     if (totalWordCount == 0) return 0;
 
-    
-    double averageLength = static_cast<double>(totalCharacters)/ 
+    double averageLength = static_cast<double>(totalCharacters)/
                            totalWordCount;
     return static_cast<unsigned int>(averageLength + 0.5);
 }
