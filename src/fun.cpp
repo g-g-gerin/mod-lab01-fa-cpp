@@ -4,63 +4,36 @@
 #include <cmath>
 #include "fun.h"
 
-unsigned int faStr1(const char *inputString) {
-    unsigned int countValidWords = 0;
-    const char *wordStart = nullptr;
+// Функция для подсчета слов без цифр в строке
+unsigned int faStr1(const char *str) {
+    unsigned int count = 0;
+    bool isWord = false;
 
-    while (*inputString) {
-        if (std::isalpha(*inputString)) {
-            if (!wordStart) {
-                wordStart = inputString;
+    while (*str) {
+        if (!std::isdigit(*str) && !std::isspace(*str)) {
+            if (!isWord) {
+                isWord = true;
             }
-        } else {
-            if (wordStart) {
-                bool isValidWord = true;
-                for (const char *p = wordStart; p != inputString; ++p) {
-                    if (std::isdigit(*p)) {
-                        isValidWord = false;
-                        break;
-                    }
-                }
-                if (isValidWord) {
-                    ++countValidWords;
-                }
-                wordStart = nullptr;
+        } else if (std::isspace(*str)) {
+            if (isWord) {
+                count++;
+                isWord = false;
+            }
+        } else if (std::isdigit(*str)) {
+            isWord = false;
+            while (*str && !std::isspace(*str)) {
+                str++;
             }
         }
-        ++inputString;
+
+        str++;
     }
 
-    if (wordStart) {
-        bool isValidWord = true;
-        for (const char *p = wordStart; *p; ++p) {
-            if (std::isdigit(*p)) {
-                isValidWord = false;
-                break;
-            }
-        }
-        if (isValidWord) {
-            ++countValidWords;
-        }
+    if (isWord) {
+        count++;
     }
 
-    return countValidWords;
-}
-
-    if (wordStart) {
-        bool isValidWord = true;
-        for (const char *p = wordStart; *p; ++p) {
-            if (std::isdigit(*p)) {
-                isValidWord = false;
-                break;
-            }
-        }
-        if (isValidWord) {
-            ++countValidWords;
-        }
-    }
-
-    return countValidWords;
+    return count;
 }
 
 unsigned int faStr2(const char *inputString) {
