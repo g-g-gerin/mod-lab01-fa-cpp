@@ -48,28 +48,27 @@ unsigned int faStr2(const char *inputString) {
 }
 
 unsigned int faStr3(const char *inputString) {
-    unsigned int totalWordCount = 0, totalCharacters = 0;
-    unsigned int currentWordLength = 0;
+    unsigned int totalWords = 0, totalChars = 0, wordLength = 0;
 
     while (*inputString) {
         if (isalpha(*inputString)) {
-            ++currentWordLength;
-        } else if (currentWordLength > 0) {
-            ++totalWordCount;
-            totalCharacters += currentWordLength;
-            currentWordLength = 0;
+            ++wordLength;
+        } else if (wordLength > 0) {
+            ++totalWords;
+            totalChars += wordLength;
+            wordLength = 0;
         }
         ++inputString;
     }
 
-    if (currentWordLength > 0) {
-        ++totalWordCount;
-        totalCharacters += currentWordLength;
+    if (wordLength > 0) {
+        ++totalWords;
+        totalChars += wordLength;
     }
 
-    if (totalWordCount == 0) return 0;
+    if (totalWords == 0) return 0;
 
-    double averageLength = static_cast<double>(totalCharacters) / totalWordCount;
-    return static_cast<unsigned int>(averageLength + 0.5);
+    double avgLength = static_cast<double>(totalChars) / totalWords;
+    return static_cast<unsigned int>(avgLength + 0.5);
 }
 }
