@@ -7,20 +7,29 @@
 unsigned int faStr1(const char *inputString) {
     unsigned int countValidWords = 0;
     bool isInWord = false;
+    bool isInvalidWord = false;
 
     while (*inputString) {
-        if (std::isalpha(*inputString) && !isInWord) {
-            isInWord = true;
-            while (std::isalpha(*inputString)) ++inputString;
-            countValidWords += 1;
-            isInWord = false;
-        } else {
-            if (!std::isalnum(*inputString)) {
-                isInWord = false;
+        if (std::isalpha(*inputString)) {
+            if (!isInWord) {
+                isInWord = true;
+                isInvalidWord = false;
             }
-            ++inputString;
+        } else if (std::isdigit(*inputString)) {
+            isInvalidWord = true;
+        } else {
+            if (isInWord && !isInvalidWord) {
+                ++countValidWords;
+            }
+            isInWord = false;
         }
+        ++inputString;
     }
+
+    if (isInWord && !isInvalidWord) {
+        ++countValidWords;
+    }
+
     return countValidWords;
 }
 
