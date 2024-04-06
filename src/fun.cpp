@@ -19,7 +19,7 @@ unsigned int faStr1(const char *inputString) {
         }
         ++inputString;
     }
-    
+
     if (isWord) {
         countValidWords++;
     }
