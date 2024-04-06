@@ -13,21 +13,19 @@ unsigned int faStr1(const char *inputString) {
             if (!isWord) {
                 isWord = true;
             }
-        }
-        else if (!std::isalnum(*inputString) && isWord) {
+        } else if (!std::isalnum(*inputString) && isWord) {
             countValidWords++;
             isWord = false;
         }
         ++inputString;
     }
-
+    
     if (isWord) {
         countValidWords++;
     }
 
     return countValidWords;
 }
-
 unsigned int faStr2(const char *inputString) {
     unsigned int countCapitalizedWords = 0;
     bool isCapitalizedWord = false;
