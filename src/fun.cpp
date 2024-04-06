@@ -6,26 +6,29 @@
 
 unsigned int faStr1(const char *inputString) {
     unsigned int countValidWords = 0;
-    bool isWord = false;
+    bool isInWord = false;
 
     while (*inputString) {
         if (std::isalpha(*inputString)) {
-            if (!isWord) {
-                isWord = true;
+            if (!isInWord) {
+                isInWord = true;
             }
-        } else if (!std::isalnum(*inputString) && isWord) {
-            countValidWords++;
-            isWord = false;
+        } else {
+            if (isInWord) {
+                countValidWords++;
+                isInWord = false;
+            }
         }
         ++inputString;
     }
 
-    if (isWord) {
+    if (isInWord) {
         countValidWords++;
     }
 
     return countValidWords;
 }
+
 unsigned int faStr2(const char *inputString) {
     unsigned int countCapitalizedWords = 0;
     bool isCapitalizedWord = false;
